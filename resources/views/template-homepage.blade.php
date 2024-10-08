@@ -33,7 +33,7 @@
             <div class="col-md-6 offset-md-3 text-center">
                 <h1 class="display-4">Selamat Datang ke {{ config('app.name') }}</h1>
 
-                <p class="lead">Sistem Laporan Pegawai Bertugas 5:30</p>
+                <p class="lead fw-bold">Sistem Laporan Pegawai Bertugas 5:30</p>
 
                 <img src="{{ asset('images/logo-lppkn-transparent.png') }}" alt="Logo LPPKN" class="img-fluid rounded shadow my-4">
 
