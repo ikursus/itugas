@@ -22,12 +22,66 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="col-8">
+
+                <div class="row mb-5">
+
+                    <div class="col-4">
+
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h1>Hello, world!</h1>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-4">
+
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h1>Hello, world!</h1>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-4">
+
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h1>Hello, world!</h1>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h1>Hello, world!</h1>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 
             </div>
 
         </div>
-
-
 
     </div>
 
