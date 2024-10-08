@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    function borangLogin() {
+    public function borangLogin() {
 
         return 'Ini adalah halaman login';
 

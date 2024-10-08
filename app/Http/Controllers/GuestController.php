@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 class GuestController extends Controller
 {
     // Method/Function untuk paparkan halaman utama aplikasi
-    function homepage() {
+    // public - Boleh digunakan di luar class
+    // protected - Boleh digunakan oleh class yang terlibat dan keturunannya
+    // private - Boleh digunakan oleh class yang terlibat sahaja
+    public function homepage() {
 
-        return 'Ini adalah halaman utama aplikasi';
+        // Function view() akan buka folder bernama resources/views
+        return view('template-homepage');
 
     }
 }
