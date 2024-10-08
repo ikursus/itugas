@@ -9,7 +9,8 @@ class LoginController extends Controller
 {
     public function borangLogin() {
 
-        return 'Ini adalah halaman login';
+        // Function view() akan buka folder bernama resources/views
+        return view('auth.template-borang-login');
 
     }
 }
