@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Perkara;
+use App\Models\TugasPerkara;
 use Illuminate\Http\Request;
 
-class PerkaraController extends Controller
+class TugasPerkaraController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return  view('perkara.template-index');
+        //
     }
 
     /**
@@ -20,7 +20,7 @@ class PerkaraController extends Controller
      */
     public function create()
     {
-        return  view('perkara.template-create');
+        //
     }
 
     /**
@@ -34,23 +34,23 @@ class PerkaraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(TugasPerkara $tugasPerkara)
     {
-        return  view('perkara.template-show', ['id' => $id]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(TugasPerkara $tugasPerkara)
     {
-        return  view('perkara.template-edit', ['id' => $id]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Perkara $perkara)
+    public function update(Request $request, TugasPerkara $tugasPerkara)
     {
         //
     }
@@ -58,7 +58,7 @@ class PerkaraController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Perkara $perkara)
+    public function destroy(TugasPerkara $tugasPerkara)
     {
         //
     }
