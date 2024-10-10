@@ -13,4 +13,14 @@ class LoginController extends Controller
         return view('auth.template-borang-login');
 
     }
+
+    public function authenticate(Request $request)
+    {
+        return redirect('/dashboard');
+    }
+
+    public function logout()
+    {
+        return redirect('/login');
+    }
 }

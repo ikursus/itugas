@@ -12,12 +12,22 @@ use App\Http\Controllers\BahagianController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Authenticate\LoginController;
 
+// Route halaman utama aplikasi
 Route::get('/', [GuestController::class, 'homepage']);
+
 // Route::get(uri, function);
 Route::get('/login', [LoginController::class, 'borangLogin']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
+// Route untuk logout
+Route::get('/logout', [LoginController::class, 'logout']);
+
+// Route untuk dashboard
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// Route untuk pengurusan profil
 Route::get('/profil', [ProfilController::class, 'index']);
+Route::patch('/profil', [ProfilController::class, 'update']);
 
 // Route untuk pengurusan users
 Route::get('/users', [UserController::class, 'index']);

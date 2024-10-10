@@ -28,6 +28,8 @@
 
             <div class="card-body bg-secondary">
 
+                @include('template-alerts')
+
                 <div class="mb-3">
                     <label class="form-label">Nama Pengguna</label>
                     <input type="text" class="form-control" name="name">
