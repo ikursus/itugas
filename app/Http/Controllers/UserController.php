@@ -27,7 +27,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Dapatkan SEMUA data (termasuk hidden field) daripada borang.
+        // return $request->all();
+        // Dapatkan data yang diperlukan sahaja
+        // return $request->only('name', 'email');
+        // Dapatkan SEMUA data KECUALI data - data tertentu
+        // return $request->except('no_phone', 'no_staff');
+        // Dapatkan nilai daripada 1 input field sahaja
+        // return $request->input('name');
+        // return $request->name;
+
+        // if ($request->has('name') && !is_null($request->input('name'))) {
+        //     // Dump and Die
+        //     dd($request->name);
+        // }
+
+        // return 'Tiada nama';
+
+        // return $request->server('HTTP_USER_AGENT');
     }
 
     /**

@@ -13,7 +13,10 @@
 
     <div class="col">
 
-        <form>
+        <form method="POST" action="/users/create">
+
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
+            @csrf
 
         <div class="card mb-4">
 

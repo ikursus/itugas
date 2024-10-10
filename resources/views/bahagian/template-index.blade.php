@@ -10,6 +10,50 @@
     <li class="breadcrumb-item active">Senarai</li>
 </ol>
 
+<div class="row">
+
+    <div class="col">
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Senarai Bahagian
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="col-1">#</th>
+                            <th class="col-8">Nama Bahagian</th>
+                            <th class="col-3">Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Bahagian Teknologi Maklumat</td>
+                            <td>
+                                <a href="{{ route('bahagian.edit', 1) }}" class="btn btn-warning">Kemaskini</a>
+                                <form action="{{ route('bahagian.destroy', 1) }}" method="post" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button 
+                                        type="submit" 
+                                        class="btn btn-danger" 
+                                        onclick="return confirm('Adakah anda pasti untuk padamkan data ini?')">
+                                            Padam
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 {{-- Isi kandungan utama tamat disini --}}
 @endsection
