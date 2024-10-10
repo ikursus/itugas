@@ -33,8 +33,8 @@
                             <td>1</td>
                             <td>Pegawai Teknologi Maklumat</td>
                             <td>
-                                <a href="{{ route('jawatan.edit', 1) }}" class="btn btn-warning">Kemaskini</a>
-                                <form action="{{ route('jawatan.destroy', 1) }}" method="post" class="d-inline">
+                                <a href="" class="btn btn-warning">Kemaskini</a>
+                                <form action="" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Adakah anda pasti untuk padamkan data ini?')">Padam</button>

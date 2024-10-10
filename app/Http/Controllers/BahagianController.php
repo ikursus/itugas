@@ -11,7 +11,7 @@ class BahagianController extends Controller
      */
     public function index()
     {
-        //
+        return view('bahagian.template-index');
     }
 
     /**
@@ -19,7 +19,7 @@ class BahagianController extends Controller
      */
     public function create()
     {
-        //
+        return view('bahagian.template-create');
     }
 
     /**
@@ -27,7 +27,7 @@ class BahagianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
