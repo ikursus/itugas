@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\JawatanRequest;
 
 class JawatanController extends Controller
 {
@@ -25,13 +26,11 @@ class JawatanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(JawatanRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        $data = $request->validated();
 
-        return $request->all();
+        dd($data);
     }
 
     /**
@@ -53,9 +52,11 @@ class JawatanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(JawatanRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+
+        dd($data);
     }
 
     /**

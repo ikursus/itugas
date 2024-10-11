@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserStoreRequest;
 
 class UserController extends Controller
 {
@@ -25,21 +26,11 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        // Validate semua field daripada borang
-        $request->validate([
-            'name' => 'required',
-            'email' => ['required', 'email:filter'],
-            'jawatan_id' => 'required|integer',
-            'password' => 'required|confirmed|min:3',
-            'nric' => 'required|digits:12',
-            'no_staff' => 'required|digits:4',
-            'no_phone' => 'required',
-            'unit_id' => 'required|integer',
-            'bahagian_id' => 'required|integer',
-            'level' => 'required|integer'
-        ]);
+        $data = $request->validated();
+
+        dd($data);
     }
 
     /**
