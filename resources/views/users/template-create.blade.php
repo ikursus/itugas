@@ -67,6 +67,12 @@
                 <div class="mb-3">
                     <label class="form-label">Email Pengguna</label>
                     <input type="email" class="form-control @error('email') is-invalid @elseif( old('email') ) is-valid @enderror" name="email" value="{{ old('email') }}">
+
+                    @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="row">
@@ -75,7 +81,13 @@
 
                         <div class="mb-3">
                             <label class="form-label">Katalaluan Pengguna</label>
-                            <input type="password" class="form-control" name="password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
                     </div>
@@ -84,7 +96,13 @@
 
                         <div class="mb-3">
                             <label class="form-label">Sahkan Katalaluan Pengguna</label>
-                            <input type="password" class="form-control" name="password_confirmation">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation">
+
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -97,6 +115,12 @@
                         <div class="mb-3">
                             <label class="form-label">No. IC</label>
                             <input type="text" class="form-control @error('nric') is-invalid @elseif( old('nric') ) is-valid @enderror" name="nric" value="{{ old('nric') }}">
+
+                            @error('nric')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
                     </div>
@@ -106,6 +130,12 @@
                         <div class="mb-3">
                             <label class="form-label">No. Staff</label>
                             <input type="text" class="form-control @error('no_staff') is-invalid @elseif( old('no_staff') ) is-valid @enderror" name="no_staff">
+
+                            @error('no_staff')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -120,6 +150,12 @@
                             <select class="form-select @error('bahagian_id') is-invalid @elseif( old('bahagian_id') ) is-valid @enderror" name="bahagian_id">
                                 <option value="">--Sila Pilih--</option>
                             </select>
+
+                            @error('bahagian_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
                     </div>
@@ -131,6 +167,12 @@
                             <select class="form-select @error('unit_id') is-invalid @elseif( old('unit_id') ) is-valid @enderror" name="unit_id">
                                 <option value="">--Sila Pilih--</option>
                             </select>
+
+                            @error('unit_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -152,6 +194,12 @@
                                 @endfor
 
                             </select>
+
+                            @error('level')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
                     </div>
@@ -161,6 +209,12 @@
                         <div class="mb-3">
                             <label class="form-label">No. Phone</label>
                             <input type="text" class="form-control @error('no_phone') is-invalid @elseif( old('no_phone') ) is-valid @enderror" name="no_phone" value="{{ old('no_phone') }}">
+
+                            @error('no_phone')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
 

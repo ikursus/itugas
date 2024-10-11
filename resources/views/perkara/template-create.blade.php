@@ -25,11 +25,17 @@
             </div>
             <!--//.card-header-->
 
-            <div class="card-body bg-secondary">
+            <div class="card-body bg-light">
 
                 <div class="mb-3">
                     <label class="form-label">Perkara</label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+
+                    @error('name')
+                        <div class="invalid-feedback" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
             </div>

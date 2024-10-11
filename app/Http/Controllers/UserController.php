@@ -31,13 +31,13 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => ['required', 'email:filter'],
-            'jawatan_id' => 'nullable|sometimes',
+            'jawatan_id' => 'required|integer',
             'password' => 'required|confirmed|min:3',
             'nric' => 'required|digits:12',
             'no_staff' => 'required|digits:4',
             'no_phone' => 'required',
-            'unit_id' => 'nullable|sometimes',
-            'bahagian_id' => 'nullable|sometimes',
+            'unit_id' => 'required|integer',
+            'bahagian_id' => 'required|integer',
             'level' => 'required|integer'
         ]);
     }

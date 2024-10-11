@@ -28,6 +28,11 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'bahagian_id' => 'required|integer',
+        ]);
+
         return $request->all();
     }
 
