@@ -30,11 +30,12 @@
                             </tr>
                         </thead>
                         <tbody>
-    
+
                             {{-- Loop Senarai Perkara Mula --}}
                             <tr>
-    
+
                                 <td>
+                                    <input type="hidden" name="perkara_id[]" value="1">
                                     1
                                 </td>
                                 <td>
@@ -54,11 +55,11 @@
                                         </label>
                                     </div>
                                 </td>
-    
+
                                 <td>
                                     <textarea class="form-control" placeholder="Catatan" name="catatan[]"></textarea>
                                 </td>
-    
+
                             </tr>
                             {{-- Loop Senarai Perkara Tamat --}}
                         </tbody>
@@ -69,10 +70,10 @@
                     <div class="col">
 
                         <div class="form-floating">
-                            <textarea 
-                            class="form-control" 
-                            placeholder="Catatan Tambahan (jika ada)" 
-                            style="height: 150px" 
+                            <textarea
+                            class="form-control"
+                            placeholder="Catatan Tambahan (jika ada)"
+                            style="height: 150px"
                             name="catatan_tambahan"></textarea>
 
                             <label>Catatan Tambahan (Jika Ada)</label>

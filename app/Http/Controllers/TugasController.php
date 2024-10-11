@@ -29,7 +29,10 @@ class TugasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'perkara_id.*' => 'required|integer',
+            'tindakan.*' => 'required|integer',
+            'catatan.*' => 'nullable|sometimes',
+            'catatan_tambahan' => 'nullable|sometimes',
         ]);
     }
 
