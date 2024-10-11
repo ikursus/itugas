@@ -26,25 +26,47 @@
             </div>
             <!--//.card-header-->
 
-            <div class="card-body bg-secondary">
+            <div class="card-body bg-light">
 
                 @include('template-alerts')
 
                 <div class="mb-3">
                     <label class="form-label">Nama Pengguna</label>
-                    <input type="text" class="form-control" name="name">
+
+                    <input
+                    type="text"
+                    class="form-control @error('name') is-invalid @elseif( old('name') ) is-valid @enderror"
+                    name="name"
+                    value="{{ old('name') }}">
+
+                    @error('name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Jawatan Pengguna</label>
-                    <select class="form-select" name="jawatan_id">
+                    <select
+                    class="form-select @error('jawatan_id') is-invalid @elseif( old('jawatan_id')) is-valid @enderror"
+                    name="jawatan_id">
+
                         <option value="">--Sila Pilih--</option>
+
                     </select>
+
+                    @error('jawatan_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Email Pengguna</label>
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control @error('email') is-invalid @elseif( old('email') ) is-valid @enderror" name="email" value="{{ old('email') }}">
                 </div>
 
                 <div class="row">
@@ -74,7 +96,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">No. IC</label>
-                            <input type="text" class="form-control" name="nric">
+                            <input type="text" class="form-control @error('nric') is-invalid @elseif( old('nric') ) is-valid @enderror" name="nric" value="{{ old('nric') }}">
                         </div>
 
                     </div>
@@ -83,7 +105,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">No. Staff</label>
-                            <input type="text" class="form-control" name="no_staff">
+                            <input type="text" class="form-control @error('no_staff') is-invalid @elseif( old('no_staff') ) is-valid @enderror" name="no_staff">
                         </div>
                     </div>
 
@@ -95,7 +117,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Bahagian</label>
-                            <select class="form-select" name="bahagian_id">
+                            <select class="form-select @error('bahagian_id') is-invalid @elseif( old('bahagian_id') ) is-valid @enderror" name="bahagian_id">
                                 <option value="">--Sila Pilih--</option>
                             </select>
                         </div>
@@ -106,7 +128,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Unit</label>
-                            <select class="form-select" name="unit_id">
+                            <select class="form-select @error('unit_id') is-invalid @elseif( old('unit_id') ) is-valid @enderror" name="unit_id">
                                 <option value="">--Sila Pilih--</option>
                             </select>
                         </div>
@@ -120,12 +142,12 @@
 
                         <div class="mb-3">
                             <label class="form-label">Level</label>
-                            <select class="form-select" name="level">
+                            <select class="form-select @error('level') is-invalid @elseif( old('level') ) is-valid @enderror" name="level">
                                 <option value="">--Sila Pilih--</option>
 
                                 @for($i = 1; $i <= 22; $i++)
 
-                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    <option value="{{ $i }}" {{ old('level') == $i ? 'selected' : '' }}>{{ $i }}</option>
 
                                 @endfor
 
@@ -138,7 +160,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">No. Phone</label>
-                            <input type="text" class="form-control" name="no_phone">
+                            <input type="text" class="form-control @error('no_phone') is-invalid @elseif( old('no_phone') ) is-valid @enderror" name="no_phone" value="{{ old('no_phone') }}">
                         </div>
                     </div>
 
@@ -149,7 +171,7 @@
 
             <div class="card-footer">
 
-                <div class="d-grid gap-2 mt-3">
+                <div class="gap-2 mt-3">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                     <button type="reset" class="btn btn-dark">Reset</button>
                 </div>
