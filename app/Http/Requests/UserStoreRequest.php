@@ -45,6 +45,7 @@ class UserStoreRequest extends FormRequest
             'password.required' => 'Sila isi kata laluan',
             'password.confirmed' => 'Kata laluan tidak sama',
             'password.min' => 'Kata laluan mestilah sekurang-kurangnya 3 aksara',
+            'no_staff.digits' => 'Nombor staff mestilah sekurang-kurangnya 4 aksara',
         ];
     }
 }

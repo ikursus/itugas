@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('tugas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->text('catatan_tambahan')->nullable();
             $table->timestamps();
+
+            // Link kan column user_id ke table users
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
         });
     }
 

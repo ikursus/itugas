@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name'); // varchar
+            $table->string('email')->unique(); //varchar
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password'); // varchar
+            $table->string('no_phone')->nullable();
+            $table->string('no_ic')->unique();
+            $table->string('no_staff')->unique();
+            $table->bigInteger('jawatan_id')->unsigned()->nullable();
+            $table->bigInteger('bahagian_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('unit_id')->nullable();
+            $table->unsignedInteger('level')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -47,3 +54,6 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
     }
 };
+
+
+
