@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('bahagian_id')->nullable();
+            $table->string('name');
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
+
+            $table->foreign('bahagian_id')->references('id')->on('bahagian')->nullOnDelete();
         });
     }
 

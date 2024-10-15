@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('bahagian', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

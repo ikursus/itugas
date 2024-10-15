@@ -18,7 +18,8 @@ return new class extends Migration
             $table->timestamps();
 
             // Link kan column user_id ke table users
-            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            // $table->foreignId('user_id')->cascadeOnDelete();
         });
     }
 

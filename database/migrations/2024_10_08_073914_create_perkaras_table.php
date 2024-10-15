@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('perkaras', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('is_enabled')->default(true); // Sediakan column is_enabled perkara untuk enable atau disable
             $table->timestamps();
         });
     }
