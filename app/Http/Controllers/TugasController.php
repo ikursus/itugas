@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\TugasRequest;
 
 class TugasController extends Controller
 {
@@ -13,7 +14,25 @@ class TugasController extends Controller
      */
     public function index()
     {
-        return  view('tugas.template-index');
+
+        // Associative Array
+        $senaraiTugas = [
+            'laut' => [
+                'bawal',
+                'siakap',
+                'kerapu',
+                'pari',
+            ],
+            'sungai' => [
+                'keli',
+                'haruan',
+                'sepat'
+            ],
+        ];
+
+        echo $senaraiTugas['sungai'][1];
+
+        //return  view('tugas.template-index');
     }
 
     /**
@@ -47,14 +66,9 @@ class TugasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TugasRequest $request)
     {
-        $request->validate([
-            'perkara_id.*' => 'required|integer',
-            'tindakan.*' => 'required|integer',
-            'catatan.*' => 'nullable|sometimes',
-            'catatan_tambahan' => 'nullable|sometimes',
-        ]);
+        dd($request->all());
     }
 
     /**

@@ -13,11 +13,17 @@
 
 <div class="row mb-4">
     <div class="col">
+
+        <form method="POST" action="/tugas">
+        @csrf
+
         <div class="card shadow-sm bg-body-tertiary rounded">
             <div class="card-header bg-primary text-white">
                 Senarai Semak/Laporan Pegawai Bertugas
             </div>
             <div class="card-body bg-secondary">
+
+                @include('template-alerts')
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover table-primary">
@@ -35,22 +41,22 @@
                             @foreach( $senaraiPerkara as $perkara)
                             <tr>
 
-                                <td>
-                                    <input type="hidden" name="perkara_id[]" value="1">
-                                    1
+                                <td class="text-end">
+                                    <input type="hidden" name="perkara_id[]" value="{{ $perkara->id }}">
+                                    {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                    PERKARA
+                                    {{ $perkara->name }}
                                 </td>
                                 <td>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="tindakan[]" value="1">
+                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}][]" value="1" required>
                                         <label class="form-check-label">
                                             Ya
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="tindakan[]" value="0">
+                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}][]" value="0" required>
                                         <label class="form-check-label">
                                             Tidak
                                         </label>
@@ -92,6 +98,8 @@
                 </div>
             </div>
         </div>
+
+        </form>
     </div>
 </div>
 
