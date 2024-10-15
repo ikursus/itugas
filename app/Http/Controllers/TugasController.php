@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tugas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TugasController extends Controller
 {
@@ -20,7 +21,27 @@ class TugasController extends Controller
      */
     public function create()
     {
-        return  view('tugas.template-create');
+        $pageTitle = 'Laporan Tugas';
+        // Dapatkan data senarai perkara yang ingin dipaparkan
+        $senaraiPerkara = DB::table('perkaras')->where('is_enabled', '=', true)->get();
+        // $senaraiPerkara = DB::table('perkaras')->where('is_enabled', true)->get();
+        // $senaraiPerkara = DB::table('perkaras')->whereIsEnabled(true)->get();
+
+        // respon paparkan template tanpa attach data
+        // return view('tugas.template-create');
+
+        // Attachkan data senarai perkara kepada template create untuk dipaparkan
+        // Cara 1 attach data kepada template
+        // return view('tugas.template-create')
+        // ->with('senaraiPerkara', $senaraiPerkara)
+        // ->with('pageTitle', $pageTitle);
+        // Cara 2 attach data kepada template
+        // return view('tugas.template-create', [
+        //     'senaraiPerkara' => $senaraiPerkara,
+        //     'pageTitle' => $pageTitle
+        // ]);
+        // Cara 3 attach data kepada template
+        return view('tugas.template-create', compact('senaraiPerkara', 'pageTitle'));
     }
 
     /**

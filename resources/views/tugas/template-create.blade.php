@@ -5,7 +5,7 @@
 @section('isi-kandungan-utama-disini')
 {{-- Isi kandungan utama bermula --}}
 
-<h1 class="mt-4">Tugas</h1>
+<h1 class="mt-4">{{ $pageTitle }}</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Daftar</li>
 </ol>
@@ -32,6 +32,7 @@
                         <tbody>
 
                             {{-- Loop Senarai Perkara Mula --}}
+                            @foreach( $senaraiPerkara as $perkara)
                             <tr>
 
                                 <td>
@@ -61,6 +62,7 @@
                                 </td>
 
                             </tr>
+                            @endforeach
                             {{-- Loop Senarai Perkara Tamat --}}
                         </tbody>
                     </table>
