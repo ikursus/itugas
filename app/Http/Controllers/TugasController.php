@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TugasRequest;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\TugasRequest;
 
 class TugasController extends Controller
 {
@@ -68,7 +68,37 @@ class TugasController extends Controller
      */
     public function store(TugasRequest $request)
     {
-        dd($request->all());
+        // Simpan data untuk table tugas
+        $tugas = DB::table('tugas')->insertGetId([
+            'user_id' => auth()->id(), // auth()->user()->id // Auth::user()->id // Auth::id()
+            'catatan_tambahan' => $request->input('catatan_tambahan')
+        ]);
+
+        // Dapatkan data perkara yang ditandakan untuk disimpan ke table tugas_perkaras
+        $perkara = $request->input('perkara_id'); // array
+        $tindakan = $request->input('tindakan'); // array
+        $catatan = $request->input('catatan'); // array
+
+        // Pastikan semua array sama panjang
+        if (count($perkara) !== count($tindakan) || count($tindakan) !== count($catatan)) {
+            throw new \Exception('Jumlah array mestilah sama.');
+        }
+
+        // Loopkan perkara yang ingin disimpan ke dalam table tugas_perkaras
+        // Dapatkan index number daripada perkara supaya
+        // data tindakan dan catatan adalah daripada index yang sama
+        for($index = 0; $index < count($perkara); $index++)
+        {
+            DB::table('tugas_perkaras')->insert([
+                'tugas_id' => $tugas,
+                'perkara_id' => $perkara[$index],
+                'tindakan' => $tindakan[$index],
+                'catatan' => $catatan[$index]
+            ]);
+        }
+
+        return 'sukses';
+
     }
 
     /**

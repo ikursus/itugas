@@ -50,13 +50,13 @@
                                 </td>
                                 <td>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}][]" value="1" required>
+                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}]" value="1" required>
                                         <label class="form-check-label">
                                             Ya
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}][]" value="0" required>
+                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}]" value="0" required>
                                         <label class="form-check-label">
                                             Tidak
                                         </label>

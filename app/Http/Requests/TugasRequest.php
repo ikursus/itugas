@@ -23,7 +23,7 @@ class TugasRequest extends FormRequest
     {
         return [
             'perkara_id.*' => 'required|integer',
-            'tindakan.*.*' => 'required|integer',
+            'tindakan.*' => 'required|integer',
             'catatan.*' => 'nullable|sometimes',
             'catatan_tambahan' => 'nullable|sometimes',
         ];
