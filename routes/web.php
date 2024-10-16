@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     // Route untuk dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     // Route untuk pengurusan profil
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');

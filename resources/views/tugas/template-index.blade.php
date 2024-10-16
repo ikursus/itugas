@@ -20,27 +20,29 @@
                 Senarai Tugas
             </div>
             <div class="card-body">
+
+                @include('template-alerts')
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th class="col-1">#</th>
-                            <th class="col-8">Tugas</th>
-                            <th class="col-3">Tindakan</th>
+                            <th class="col-4">Pegawai Bertugas</th>
+                            <th class="col-5">Catatan Tambahan</th>
+                            <th class="col-2">Tindakan</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($senaraiTugas as $tugas)
                         <tr>
-                            <td>1</td>
-                            <td>Tugas </td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $tugas->user_id ?? NULL }}</td>
+                            <td>{{ $tugas->catatan_tambahan ?? NULL }}</td>
                             <td>
-                                <a href="" class="btn btn-warning">Kemaskini</a>
-                                <form action="" method="post" class="d-inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Adakah anda pasti untuk padamkan data ini?')">Padam</button>
-                                </form>
+                                <a href="{{ route('tugas.show', $tugas->id) }}" class="btn btn-info">Lihat Detail</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -14,7 +14,11 @@ class TugasController extends Controller
      */
     public function index()
     {
-        return  view('tugas.template-index');
+        // Dapatkan senarai tugas daripada table tugas dan sorting data latest di atas
+        // dan data lama dibawah menerusi order by ID descending
+        $senaraiTugas = DB::table('tugas')->orderBy('id', 'desc')->get();
+
+        return  view('tugas.template-index', compact('senaraiTugas'));
     }
 
     /**
@@ -53,7 +57,8 @@ class TugasController extends Controller
         // Simpan data untuk table tugas
         $tugas = DB::table('tugas')->insertGetId([
             'user_id' => auth()->id(), // auth()->user()->id // Auth::user()->id // Auth::id()
-            'catatan_tambahan' => $request->input('catatan_tambahan')
+            'catatan_tambahan' => $request->input('catatan_tambahan'),
+            'created_at' => now() // Carbon::now()
         ]);
 
         // Dapatkan data perkara yang ditandakan untuk disimpan ke table tugas_perkaras
@@ -76,11 +81,14 @@ class TugasController extends Controller
                 'tugas_id' => $tugas,
                 'perkara_id' => $perkara[$index],
                 'tindakan' => $tindakan[$index],
-                'catatan' => $catatan[$index]
+                'catatan' => $catatan[$index],
+                'created_at' => now() // Carbon::now()
             ]);
         }
 
-        return redirect()->route('tugas.index');
+        // Respon redirect client ke senarai sejarah tugas selepas selesai simpan rekod
+        // dan paparkan mesej alert rekod berjaya disimpan menerusi Flash Messaging
+        return redirect()->route('tugas.index')->with('alert-berjaya', 'Rekod berjaya disimpan.');
 
     }
 
