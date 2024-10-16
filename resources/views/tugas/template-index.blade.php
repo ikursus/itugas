@@ -36,7 +36,7 @@
                         @foreach ($senaraiTugas as $tugas)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $tugas->user_id ?? NULL }}</td>
+                            <td>{{ $tugas->name ?? NULL }}</td>
                             <td>{{ $tugas->catatan_tambahan ?? NULL }}</td>
                             <td>
                                 <a href="{{ route('tugas.show', $tugas->id) }}" class="btn btn-info">Lihat Detail</a>
@@ -45,6 +45,10 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                {{ $senaraiTugas->links() }}
+                {{-- {{ $senaraiTugas->render() }} --}}
+
             </div>
         </div>
 

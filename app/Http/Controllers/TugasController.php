@@ -14,11 +14,23 @@ class TugasController extends Controller
      */
     public function index()
     {
-        // Dapatkan senarai tugas daripada table tugas dan sorting data latest di atas
+        // Dapatkan senarai tugas untuk akaun yang sedang login
+        // daripada table tugas dan sorting data latest di atas
         // dan data lama dibawah menerusi order by ID descending
-        $senaraiTugas = DB::table('tugas')->orderBy('id', 'desc')->get();
+        // $senaraiTugas = DB::table('tugas')
+        // ->where('user_id', '=', auth()->id())
+        // ->orderBy('id', 'desc')
+        // //->get();
+        // ->paginate(3);// pagination mengikut jumlah bilangan item per page
+        $senaraiTugas = DB::table('tugas')
+        ->join('users', 'tugas.user_id', '=', 'users.id') // Gabungkan kedua table tugas dan users
+        ->where('tugas.user_id', '=', auth()->id()) // Filter tugas mengikut user yang sedang login
+        ->orderBy('tugas.id', 'desc') // Sort data latest diatas
+        ->select('tugas.*', 'users.name') // Pilih data yang nak dipaparkan daripada kedua table
+        //->get();
+        ->paginate(3);// pagination mengikut jumlah bilangan item per page
 
-        return  view('tugas.template-index', compact('senaraiTugas'));
+        return view('tugas.template-index', compact('senaraiTugas'));
     }
 
     /**
@@ -97,7 +109,18 @@ class TugasController extends Controller
      */
     public function show(string $id)
     {
-        return  view('tugas.template-show', ['id' => $id]);
+        // Dapatkan data tugas berdasarkan id yang dipilih
+        $tugas = DB::table('tugas')
+        ->rightJoin('tugas_perkaras', 'tugas.id', '=', 'tugas_perkaras.tugas_id')
+        ->where('tugas.user_id', '=', auth()->id())
+        ->where('tugas.id', '=', $id)
+        ->select('tugas.*', 'tugas_perkaras.perkara_id', 'tugas_perkaras.tindakan', 'tugas_perkaras.catatan')
+        ->get();
+
+        // Dapatkan data perkara yang ditandakan untuk ditunjukkan pada table tugas_perkaras
+        $senaraiPerkara = DB::table('perkaras')->where('is_enabled', '=', true)->get();
+
+        return view('tugas.template-show', compact('tugas', 'senaraiPerkara'));
     }
 
     /**
