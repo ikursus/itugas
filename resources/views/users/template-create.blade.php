@@ -13,7 +13,7 @@
 
     <div class="col">
 
-        <form method="POST" action="/users/create">
+        <form method="POST" action="{{ route('users.store') }}">
 
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
             @csrf

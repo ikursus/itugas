@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Daftar Masuk</a>
+                        <a class="nav-link" href="{{ route('login') }}">Daftar Masuk</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/register">Daftar Akaun</a>
@@ -40,7 +40,7 @@
 
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <a href="/register" class="btn btn-primary btn-lg px-4 gap-3">Daftar Akaun</a>
-                    <a href="/login" class="btn btn-outline-secondary btn-lg px-4">Daftar Masuk</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-secondary btn-lg px-4">Daftar Masuk</a>
                 </div>
             </div>
         </div>

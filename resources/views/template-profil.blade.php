@@ -13,7 +13,7 @@
 
     <div class="col">
 
-        <form method="POST" action="/profil">
+        <form method="POST" action="{{ route('profile.update') }}">
 
             @csrf
             @method('PATCH')

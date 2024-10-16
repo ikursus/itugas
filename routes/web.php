@@ -13,33 +13,33 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Authenticate\LoginController;
 
 // Route halaman utama aplikasi
-Route::get('/', [GuestController::class, 'homepage']);
+Route::get('/', [GuestController::class, 'homepage'])->name('halaman.utama');
 
 // Route::get(uri, function);
 Route::get('/login', [LoginController::class, 'borangLogin'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
 // Protected semua routing yang terlibat. Perlu login untuk buka
 Route::group(['middleware' => 'auth'], function () {
 
     // Route untuk logout
-    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     // Route untuk dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Route untuk pengurusan profil
-    Route::get('/profil', [ProfilController::class, 'index']);
-    Route::patch('/profil', [ProfilController::class, 'update']);
+    Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');
+    Route::patch('/profil', [ProfilController::class, 'update'])->name('profile.update');
 
     // Route untuk pengurusan users
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/users/create', [UserController::class, 'create']);
-    Route::post('/users/create', [UserController::class, 'store']);
-    Route::get('/users/{id}', [UserController::class, 'show']);
-    Route::get('/users/{id}/edit', [UserController::class, 'edit']);
-    Route::patch('/users/{id}', [UserController::class, 'update']);
-    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users/create', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
 

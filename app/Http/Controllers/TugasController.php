@@ -14,25 +14,7 @@ class TugasController extends Controller
      */
     public function index()
     {
-
-        // Associative Array
-        $senaraiTugas = [
-            'laut' => [
-                'bawal',
-                'siakap',
-                'kerapu',
-                'pari',
-            ],
-            'sungai' => [
-                'keli',
-                'haruan',
-                'sepat'
-            ],
-        ];
-
-        echo $senaraiTugas['sungai'][1];
-
-        //return  view('tugas.template-index');
+        return  view('tugas.template-index');
     }
 
     /**
@@ -87,6 +69,7 @@ class TugasController extends Controller
         // Loopkan perkara yang ingin disimpan ke dalam table tugas_perkaras
         // Dapatkan index number daripada perkara supaya
         // data tindakan dan catatan adalah daripada index yang sama
+        // foreach($perkara as $key => $value)
         for($index = 0; $index < count($perkara); $index++)
         {
             DB::table('tugas_perkaras')->insert([
@@ -97,7 +80,7 @@ class TugasController extends Controller
             ]);
         }
 
-        return 'sukses';
+        return redirect()->route('tugas.index');
 
     }
 

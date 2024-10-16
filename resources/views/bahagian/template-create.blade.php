@@ -13,7 +13,7 @@
 
     <div class="col">
 
-        <form method="POST" action="/bahagian">
+        <form method="POST" action="{{ route('bahagian.store') }}">
 
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
             @csrf

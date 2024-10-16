@@ -33,7 +33,7 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -45,7 +45,7 @@
                         <div class="nav">
 
                             <div class="sb-sidenav-menu-heading">MENU PENGGUNA</div>
-                            <a class="nav-link" href="/dashboard">
+                            <a class="nav-link" href="{{ route('dashboard') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -57,8 +57,8 @@
                             </a>
                             <div class="collapse" id="collapseTugas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/tugas/create">Daftar Tugas</a>
-                                    <a class="nav-link" href="/tugas">Sejarah Tugas</a>
+                                    <a class="nav-link" href="{{ route('tugas.create') }}">Daftar Tugas</a>
+                                    <a class="nav-link" href="{{ route('tugas.index') }}">Sejarah Tugas</a>
                                 </nav>
                             </div>
 
@@ -71,8 +71,8 @@
                             </a>
                             <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/users">Senarai Users</a>
-                                    <a class="nav-link" href="/users/create">Daftar User Baru</a>
+                                    <a class="nav-link" href="{{ route('users.index') }}">Senarai Users</a>
+                                    <a class="nav-link" href="{{ route('users.create') }}">Daftar User Baru</a>
                                 </nav>
                             </div>
 
@@ -83,8 +83,8 @@
                             </a>
                             <div class="collapse" id="collapseJawatan" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/jawatan">Senarai Jawatan</a>
-                                    <a class="nav-link" href="/jawatan/create">Daftar Jawatan Baru</a>
+                                    <a class="nav-link" href="{{ route('jawatan.index') }}">Senarai Jawatan</a>
+                                    <a class="nav-link" href="{{ route('jawatan.create') }}">Daftar Jawatan Baru</a>
                                 </nav>
                             </div>
 
@@ -95,8 +95,8 @@
                             </a>
                             <div class="collapse" id="collapseBahagian" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/bahagian">Senarai Bahagian</a>
-                                    <a class="nav-link" href="/bahagian/create">Daftar Bahagian Baru</a>
+                                    <a class="nav-link" href="{{ route('bahagian.index') }}">Senarai Bahagian</a>
+                                    <a class="nav-link" href="{{ route('bahagian.create') }}">Daftar Bahagian Baru</a>
                                 </nav>
                             </div>
 
@@ -107,8 +107,8 @@
                             </a>
                             <div class="collapse" id="collapseUnit" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/unit">Senarai Unit</a>
-                                    <a class="nav-link" href="/unit/create">Daftar Unit Baru</a>
+                                    <a class="nav-link" href="{{ route('unit.index') }}">Senarai Unit</a>
+                                    <a class="nav-link" href="{{ route('unit.create') }}">Daftar Unit Baru</a>
                                 </nav>
                             </div>
 
@@ -119,18 +119,18 @@
                             </a>
                             <div class="collapse" id="collapsePerkara" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/perkara">Senarai Perkara</a>
-                                    <a class="nav-link" href="/perkara/create">Daftar Perkara Baru</a>
+                                    <a class="nav-link" href="{{ route('perkara.index') }}">Senarai Perkara</a>
+                                    <a class="nav-link" href="{{ route('perkara.create') }}">Daftar Perkara Baru</a>
                                 </nav>
                             </div>
 
 
                             <div class="sb-sidenav-menu-heading">Akaun</div>
-                            <a class="nav-link" href="/profil">
+                            <a class="nav-link" href="{{ route('profil.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                                 Profil
                             </a>
-                            <a class="nav-link" href="/logout">
+                            <a class="nav-link" href="{{ route('logout') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sign-out"></i></div>
                                 Logout
                             </a>

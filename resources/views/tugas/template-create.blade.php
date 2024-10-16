@@ -14,7 +14,7 @@
 <div class="row mb-4">
     <div class="col">
 
-        <form method="POST" action="/tugas">
+        <form method="POST" action="{{ route('tugas.store') }}">
         @csrf
 
         <div class="card shadow-sm bg-body-tertiary rounded">

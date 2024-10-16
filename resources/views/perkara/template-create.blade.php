@@ -13,7 +13,7 @@
 
     <div class="col">
 
-        <form method="POST" action="/perkara">
+        <form method="POST" action="{{ route('perkara.store') }}">
 
             @csrf
 
