@@ -40,9 +40,9 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->jawatan }}</td>
-                            <td>{{ $user->bahagian_id }}</td>
-                            <td>{{ $user->unit_id }}</td>
+                            <td>{{ $user->jawatan->name ?? "Belum set jawatan" }}</td>
+                            <td>{{ $user->bahagian->name ?? "Belum set bahagian"  }}</td>
+                            <td>{{ $user->unit->name ?? "Belum set unit"  }}</td>
                             <td>{{ $user->level }}</td>
                             <td>
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>

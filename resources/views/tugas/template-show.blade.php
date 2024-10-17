@@ -5,7 +5,8 @@
 @section('isi-kandungan-utama-disini')
 {{-- Isi kandungan utama bermula --}}
 
-<h1 class="mt-4">Tugas: {{ \Carbon\Carbon::parse($tugas[0]->created_at)->format('d M Y') }}</h1>
+{{-- <h1 class="mt-4">Tugas: {{ \Carbon\Carbon::parse($tugas[0]->created_at)->format('d M Y') }}</h1> --}}
+<h1 class="mt-4">Tugas: {{ $tugas->created_at->format('d M Y') }}</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Detail</li>
 </ol>
@@ -48,13 +49,13 @@
                                 </td>
                                 <td>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}]" value="1" {{ $tugas[$loop->iteration - 1]->tindakan == '1' ? 'checked' : '' }} disabled>
+                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}]" value="1" {{ $tugas->senaraiPerkara[$loop->iteration - 1]->tindakan == '1' ? 'checked' : '' }} disabled>
                                         <label class="form-check-label">
                                             Ya
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}]" value="0" {{ $tugas[$loop->iteration - 1]->tindakan != '1' ? 'checked' : '' }} disabled>
+                                        <input class="form-check-input" type="radio" name="tindakan[{{ $loop->iteration - 1 }}]" value="0" {{ $tugas->senaraiPerkara[$loop->iteration - 1]->tindakan != '1' ? 'checked' : '' }} disabled>
                                         <label class="form-check-label">
                                             Tidak
                                         </label>
@@ -62,7 +63,7 @@
                                 </td>
 
                                 <td>
-                                    <textarea class="form-control" placeholder="Catatan" name="catatan[]" disabled>{{ $tugas[$loop->iteration - 1]->catatan }}</textarea>
+                                    <textarea class="form-control" placeholder="Catatan" name="catatan[]" disabled>{{ $tugas->senaraiPerkara[$loop->iteration - 1]->catatan }}</textarea>
                                 </td>
 
                             </tr>
@@ -81,7 +82,7 @@
                             placeholder="Catatan Tambahan (jika ada)"
                             style="height: 150px"
                             name="catatan_tambahan"
-                            disabled>{{ $tugas[0]->catatan_tambahan }}</textarea>
+                            disabled>{{ $tugas->catatan_tambahan }}</textarea>
 
                             <label>Catatan Tambahan (Jika Ada)</label>
 

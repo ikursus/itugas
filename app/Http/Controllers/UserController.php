@@ -17,7 +17,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $senaraiUsers = User::all();
+        $senaraiUsers = User::with([
+            'jawatan',
+            'bahagian',
+            'unit'
+        ])
+        ->get();
 
         return view('users.template-index', compact('senaraiUsers'));
     }

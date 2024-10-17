@@ -14,4 +14,9 @@ class Unit extends Model
         'bahagian_id',
         'name'
     ];
+
+    public function bahagian()
+    {
+        return $this->belongsTo(Bahagian::class, 'bahagian_id', 'id');
+    }
 }

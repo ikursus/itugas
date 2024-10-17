@@ -17,7 +17,7 @@ class UnitController extends Controller
         // Query Builder
         // $senaraiUnit = DB::table('units')->all();
         // Dapatkan data menerusi Eloquent ORM / Model
-        $senaraiUnit = Unit::paginate(2);
+        $senaraiUnit = Unit::with('bahagian')->paginate(2);
 
         return  view('unit.template-index', compact('senaraiUnit'));
     }

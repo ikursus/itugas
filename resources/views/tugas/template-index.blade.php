@@ -27,8 +27,9 @@
                     <thead>
                         <tr>
                             <th class="col-1">#</th>
-                            <th class="col-4">Pegawai Bertugas</th>
-                            <th class="col-5">Catatan Tambahan</th>
+                            <th class="col-2">Tarikh Bertugas</th>
+                            <th class="col-3">Pegawai Bertugas</th>
+                            <th class="col-4">Catatan Tambahan</th>
                             <th class="col-2">Tindakan</th>
                         </tr>
                     </thead>
@@ -36,7 +37,8 @@
                         @foreach ($senaraiTugas as $tugas)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $tugas->name ?? NULL }}</td>
+                            <td>{{ $tugas->created_at->format('d M Y') }}</td>
+                            <td>{{ $tugas->user->name ?? NULL }}</td>
                             <td>{{ $tugas->catatan_tambahan ?? NULL }}</td>
                             <td>
                                 <a href="{{ route('tugas.show', $tugas->id) }}" class="btn btn-info">Lihat Detail</a>

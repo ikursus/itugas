@@ -36,7 +36,7 @@
                         @foreach ( $senaraiUnit as $unit )
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $unit->bahagian_id }} </td>
+                            <td>{{ $unit->bahagian->name }} </td>
                             <td>{{ $unit->name }} </td>
                             <td>
                                 <a href="{{ route('unit.edit', $unit->id) }}" class="btn btn-info">Kemaskini</a>
