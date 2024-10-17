@@ -23,11 +23,11 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => ['required', 'email:filter'],
+            'email' => ['required', 'email:filter,unique:users,email'],
             'jawatan_id' => 'nullable|sometimes|integer',
             'password' => 'required|confirmed|min:3',
-            'nric' => 'required|digits:12',
-            'no_staff' => 'required|digits:4',
+            'nric' => 'required|digits:12,unique:users,no_ic',
+            'no_staff' => 'required|digits:4,unique:users,no_staff',
             'no_phone' => 'required',
             'unit_id' => 'nullable|sometimes|integer',
             'bahagian_id' => 'nullable|sometimes|integer',

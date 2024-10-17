@@ -25,7 +25,6 @@ class UserUpdateRequest extends FormRequest
             'name' => 'required',
             'email' => ['required', 'email:filter'],
             'jawatan_id' => 'nullable|sometimes|integer',
-            'password' => 'nullable|sometimes|confirmed|min:3',
             'nric' => 'required|digits:12',
             'no_staff' => 'required|digits:4',
             'no_phone' => 'required',

@@ -44,7 +44,7 @@
                                 <form action="{{ route('unit.destroy', $unit->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Adakah anda pasti untuk padamkan data ini: {{ $unit->names }}?')">Padam</button>
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Adakah anda pasti untuk padamkan data ini: {{ $unit->name }}?')">Padam</button>
                                 </form>
 
                             </td>
