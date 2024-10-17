@@ -17,6 +17,7 @@
 
             @csrf
             @method('PATCH')
+            <input type="hidden" name="_method" value="PATCH">
 
             <div class="card mb-4">
 
@@ -32,7 +33,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Nama</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $jawatan->name }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? $jawatan->name ?? NULL }}">
 
                         @error('name')
                             <div class="invalid-feedback" role="alert">

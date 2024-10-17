@@ -13,9 +13,9 @@ class JawatanController extends Controller
      */
     public function index()
     {
-        $senaraiJawatan = DB::table('jawatan')->get();
+        $senaraiJawatan = DB::table('jawatan')->paginate(10);
 
-        return  view('jawatan.template-index', compact('senaraiJawatan'));
+        return view('jawatan.template-index', compact('senaraiJawatan'));
     }
 
     /**

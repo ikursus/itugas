@@ -32,22 +32,28 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach( $senaraiJawatan as $jawatan)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $jawatan->name }}</td>
                             <td>
                                 <a href="{{ route('jawatan.edit', $jawatan->id) }}" class="btn btn-info">Kemaskini</a>
+
                                 <form action="{{ route('jawatan.destroy', $jawatan->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Adakah anda pasti untuk padamkan data ini?')">Padam</button>
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Adakah anda pasti untuk padamkan data ini: {{ $jawatan->name }}?')">Padam</button>
                                 </form>
                             </td>
                         </tr>
                         @endforeach
+
                     </tbody>
                 </table>
+
+                {{-- links() hanya boleh digunakan jika senaraijawatan menggunakan ->paginate() di dalam controller --}}
+                {{ $senaraiJawatan->links() }}
             </div>
         </div>
 
