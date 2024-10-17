@@ -20,6 +20,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'no_phone',
+        'no_ic',
+        'no_staff',
+        'jawatan_id',
+        'bahagian_id',
+        'unit_id',
+        'level'
     ];
 
     /**

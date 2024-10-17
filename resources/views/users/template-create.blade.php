@@ -55,6 +55,10 @@
 
                         <option value="">--Sila Pilih--</option>
 
+                        @foreach ($senaraiJawatan as $jawatan)
+                        <option value="{{ $jawatan->id }}" {{ old('jawatan_id') == $jawatan->id ? 'selected' : NULL }}>{{ $jawatan->name }}</option>
+                        @endforeach
+
                     </select>
 
                     @error('jawatan_id')
@@ -149,6 +153,10 @@
                             <label class="form-label">Bahagian</label>
                             <select class="form-select @error('bahagian_id') is-invalid @elseif( old('bahagian_id') ) is-valid @enderror" name="bahagian_id">
                                 <option value="">--Sila Pilih--</option>
+
+                                @foreach ($senaraiBahagian as $bahagian)
+                                <option value="{{ $bahagian->id }}" {{ old('bahagian_id') == $bahagian->id ? 'selected' : NULL }}>{{ $bahagian->name }}</option>
+                                @endforeach
                             </select>
 
                             @error('bahagian_id')
@@ -166,6 +174,10 @@
                             <label class="form-label">Unit</label>
                             <select class="form-select @error('unit_id') is-invalid @elseif( old('unit_id') ) is-valid @enderror" name="unit_id">
                                 <option value="">--Sila Pilih--</option>
+
+                                @foreach ($senaraiUnit as $unit)
+                                <option value="{{ $unit->id }}" {{ old('unit_id') == $unit->id ? 'selected' : NULL }}>{{ $unit->name }}</option>
+                                @endforeach
                             </select>
 
                             @error('unit_id')

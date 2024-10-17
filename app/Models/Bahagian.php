@@ -10,4 +10,9 @@ class Bahagian extends Model
     use HasFactory;
 
     protected $table = 'bahagian';
+
+    protected $fillable = [
+        'name',
+        'is_enabled'
+    ];
 }

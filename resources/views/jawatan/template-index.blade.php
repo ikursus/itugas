@@ -24,6 +24,7 @@
             <div class="card-body">
 
                 @include('template-alerts')
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Perkara;
 use Illuminate\Http\Request;
+use App\Http\Requests\PerkaraRequest;
 
 class PerkaraController extends Controller
 {
@@ -12,7 +13,9 @@ class PerkaraController extends Controller
      */
     public function index()
     {
-        return  view('perkara.template-index');
+        $senaraiPerkara = Perkara::paginate(10);
+
+        return view('perkara.template-index', compact('senaraiPerkara'));
     }
 
     /**
@@ -20,19 +23,17 @@ class PerkaraController extends Controller
      */
     public function create()
     {
-        return  view('perkara.template-create');
+        return view('perkara.template-create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PerkaraRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        Perkara::create( $request->all() );
 
-        return $request->all();
+        return redirect()->route('perkara.index')->with('alert-berjaya', 'Rekod berjaya disimpan');
     }
 
     /**
@@ -40,7 +41,7 @@ class PerkaraController extends Controller
      */
     public function show(string $id)
     {
-        return  view('perkara.template-show', ['id' => $id]);
+
     }
 
     /**
@@ -48,22 +49,30 @@ class PerkaraController extends Controller
      */
     public function edit(string $id)
     {
-        return  view('perkara.template-edit', ['id' => $id]);
+        $perkara = Perkara::findOrFail($id);
+
+        return view('perkara.template-edit', compact('perkara'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Perkara $perkara)
+    public function update(PerkaraRequest $request, $id)
     {
-        //
+        $perkara = Perkara::findOrFail($id);
+        $perkara->update( $request->validated() );
+
+        return redirect()->route('perkara.index')->with('alert-berjaya', 'Rekod berjaya dikemaskini.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Perkara $perkara)
+    public function destroy($id)
     {
-        //
+        $perkara = Perkara::findOrFail($id);
+        $perkara->delete();
+
+        return redirect()->route('perkara.index')->with('alert-berjaya', 'Rekod berjaya dihapuskan');
     }
 }

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Perkara extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'is_enabled'
+    ];
 }

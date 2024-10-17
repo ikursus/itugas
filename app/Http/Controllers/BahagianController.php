@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bahagian;
 use Illuminate\Http\Request;
+use App\Http\Requests\BahagianRequest;
 
 class BahagianController extends Controller
 {
@@ -11,7 +13,9 @@ class BahagianController extends Controller
      */
     public function index()
     {
-        return view('bahagian.template-index');
+        $senaraiBahagian = Bahagian::paginate(10);
+
+        return view('bahagian.template-index', compact('senaraiBahagian'));
     }
 
     /**
@@ -25,13 +29,11 @@ class BahagianController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BahagianRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        Bahagian::create( $request->validated() );
 
-        return $request->all();
+        return redirect()->route('bahagian.index')->with('alert-berjaya', 'Rekod berjaya disimpan');
     }
 
     /**
@@ -47,15 +49,20 @@ class BahagianController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $bahagian = Bahagian::findOrFail($id);
+
+        return view('bahagian.template-edit', compact('bahagian'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BahagianRequest $request, string $id)
     {
-        //
+        $bahagian = Bahagian::findOrFail($id);
+        $bahagian->update( $request->validated() );
+
+        return redirect()->route('bahagian.index')->with('alert-berjaya', 'Rekod berjaya dikemaskini');
     }
 
     /**
@@ -63,6 +70,9 @@ class BahagianController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $bahagian = Bahagian::findOrFail($id);
+        $bahagian->delete();
+
+        return redirect()->route('bahagian.index')->with('alert-berjaya', 'Rekod berjaya dihapus');
     }
 }

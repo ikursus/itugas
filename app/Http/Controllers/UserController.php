@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -12,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return  view('users.template-index');
+        $senaraiUsers = User::all();
+
+        return view('users.template-index', compact('senaraiUsers'));
     }
 
     /**
@@ -20,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return  view('users.template-create');
+        return view('users.template-create');
     }
 
     /**
@@ -29,8 +33,12 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         $data = $request->validated();
+        // Memandangkan pada borang nombor ic menggunakan field bernama nric, maka assignkan nric kepada column database no_ic
+        $data['no_ic'] = $request->input('nric');
 
-        dd($data);
+        User::create($data);
+
+        return redirect()->route('users.index')->with('alert-berjaya', 'Rekod berjaya disimpan');
     }
 
     /**
@@ -38,7 +46,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return  view('users.template-show');
+        return view('users.template-show');
     }
 
     /**
@@ -46,15 +54,24 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        return  view('users.template-edit');
+        $user = User::findOrFail($id);
+
+        return view('users.template-edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        // Memandangkan pada borang nombor ic menggunakan field bernama nric, maka assignkan nric kepada column database no_ic
+        $data['no_ic'] = $request->input('nric');
+
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        return redirect()->route('users.index')->with('alert-berjaya', 'Rekod berjaya dikemaskini');
     }
 
     /**
@@ -62,6 +79,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return redirect()->route('users.index')->with('alert-berjaya', 'Rekod berjaya dihapuskan');
     }
 }
