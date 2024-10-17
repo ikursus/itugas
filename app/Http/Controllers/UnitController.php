@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unit;
+use App\Models\Bahagian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UnitController extends Controller
 {
@@ -12,36 +14,49 @@ class UnitController extends Controller
      */
     public function index()
     {
-        return  view('unit.template-index');
+        // Query Builder
+        // $senaraiUnit = DB::table('units')->all();
+        // Dapatkan data menerusi Eloquent ORM / Model
+        $senaraiUnit = Unit::paginate(2);
+
+        return  view('unit.template-index', compact('senaraiUnit'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return  view('unit.template-create');
+        // Dapatkan senarai bahagian
+        $senaraiBahagian = Bahagian::select('id', 'name')->get();
+
+        // respon paparkan template
+        return  view('unit.template-create', compact('senaraiBahagian'));
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required',
             'bahagian_id' => 'required|integer',
         ]);
 
-        return $request->all();
-    }
+        // Cara 1 - new object
+        // $unit = new Unit;
+        // $unit->name = $request->input('name');
+        // $unit->bahagian_id = $request->input('bahagian_id');
+        // $unit->save();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        return  view('unit.template-show');
+        // Cara 2 - mass assignment
+        $unit = Unit::create($data);
+
+        return redirect()->route('unit.index')->with('alert-berjaya', 'Rekod berjaya disimpan');
+
     }
 
     /**
@@ -49,22 +64,43 @@ class UnitController extends Controller
      */
     public function edit(string $id)
     {
-        return  view('unit.template-edit');
+        // Dapatkan senarai bahagian
+        $senaraiBahagian = Bahagian::select('id', 'name')->get();
+
+        // Dapatkan data unit yang ingin dikemaskini berdasarkan ID
+        // $unit = Unit::where('id', '=', $id)->first();
+        // $unit = Unit::whereId($id)->first();
+        // $unit = Unit::find($id);
+        $unit = Unit::findOrFail($id);
+        // $unit = Unit::findOrCreate($id);
+
+        return  view('unit.template-edit', compact('unit', 'senaraiBahagian'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Unit $unit)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'bahagian_id' => 'required|integer',
+        ]);
+
+        $unit = Unit::findOrFail($id);
+        $unit->update($data);
+
+        return redirect()->route('unit.index')->with('alert-berjaya', 'Rekod berjaya dikemaskini');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Unit $unit)
+    public function destroy($id)
     {
-        //
+        $unit = Unit::findOrFail($id);
+        $unit->delete();
+
+        return redirect()->route('unit.index')->with('alert-berjaya', 'Rekod berjaya dihapuskan');
     }
 }

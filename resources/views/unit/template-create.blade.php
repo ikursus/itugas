@@ -18,54 +18,61 @@
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
             @csrf
 
-        <div class="card mb-4">
+            <div class="card mb-4">
 
-            <div class="card-header">
-                <i class="fas fa-folder-open me-1"></i>
-                Maklumat Unit
-            </div>
-            <!--//.card-header-->
-
-            <div class="card-body bg-light">
-
-                <div class="mb-3">
-                    <label class="form-label">Bahagian</label>
-                    <select class="form-select @error('bahagian_id') is-invalid @enderror" name="bahagian_id">
-                        <option value="">-- Pilih Bahagian --</option>
-                    </select>
-                    @error('bahagian_id')
-                        <div class="invalid-feedback" role="alert">
-                            {{ $message }}
-                        </span>
-                    @enderror
+                <div class="card-header">
+                    <i class="fas fa-folder-open me-1"></i>
+                    Maklumat Unit
                 </div>
+                <!--//.card-header-->
 
-                <div class="mb-3">
-                    <label class="form-label">Nama</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+                <div class="card-body bg-light">
 
-                    @error('name')
-                        <div class="invalid-feedback" role="alert">
-                            {{ $message }}
-                        </span>
-                    @enderror
+                    @include('template-alerts')
+
+                    <div class="mb-3">
+                        <label class="form-label">Bahagian</label>
+                        <select class="form-select @error('bahagian_id') is-invalid @enderror" name="bahagian_id">
+                            <option value="">-- Pilih Bahagian --</option>
+
+                            @foreach ($senaraiBahagian as $bahagian)
+                                <option value="{{ $bahagian->id }}">{{ $bahagian->name }}</option>
+                            @endforeach
+
+                        </select>
+                        @error('bahagian_id')
+                            <div class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nama</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+
+                        @error('name')
+                            <div class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+
                 </div>
+                <!--//.card-body-->
+
+                <div class="card-footer">
+
+                    <div class="gap-2 mt-3">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="reset" class="btn btn-dark">Reset</button>
+                    </div>
+
+                </div>
+                <!--//.card-footer-->
 
             </div>
-            <!--//.card-body-->
-
-            <div class="card-footer">
-
-                <div class="gap-2 mt-3">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="reset" class="btn btn-dark">Reset</button>
-                </div>
-
-            </div>
-            <!--//.card-footer-->
-
-        </div>
-        <!--//.card-->
+            <!--//.card-->
 
         </form>
 

@@ -14,6 +14,8 @@
 
     <div class="col">
 
+        <a href="{{ route('jawatan.create') }}" class="btn btn-primary mb-3">Daftar Jawatan Baru</a>
+
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
@@ -22,7 +24,6 @@
             <div class="card-body">
 
                 @include('template-alerts')
-
                 <table class="table table-bordered">
                     <thead>
                         <tr>

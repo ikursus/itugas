@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('jawatan', JawatanController::class)->except('show');
     // Pilih method/function yang nak digunakan sahaja.
     Route::resource('bahagian', BahagianController::class)->only('index', 'create', 'store', 'edit', 'update', 'destroy');
-    Route::resource('unit', UnitController::class);
+    Route::resource('unit', UnitController::class)->except('show');
     Route::resource('tugas', TugasController::class)->only('index', 'create', 'store', 'show');
 
 });
