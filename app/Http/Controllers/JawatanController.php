@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\JawatanRequest;
 
 class JawatanController extends Controller
@@ -12,7 +13,9 @@ class JawatanController extends Controller
      */
     public function index()
     {
-        return  view('jawatan.template-index');
+        $senaraiJawatan = DB::table('jawatan')->get();
+
+        return  view('jawatan.template-index', compact('senaraiJawatan'));
     }
 
     /**
@@ -30,7 +33,9 @@ class JawatanController extends Controller
     {
         $data = $request->validated();
 
-        dd($data);
+        DB::table('jawatan')->insert($data);
+
+        return redirect()->route('jawatan.index')->with('alert-berjaya', 'Rekod berjaya disimpan');
     }
 
     /**
@@ -38,7 +43,7 @@ class JawatanController extends Controller
      */
     public function show(string $id)
     {
-        return  view('jawatan.template-show', ['id' => $id]);
+        //return  view('jawatan.template-show', ['id' => $id]);
     }
 
     /**
@@ -46,7 +51,9 @@ class JawatanController extends Controller
      */
     public function edit(string $id)
     {
-        return  view('jawatan.template-edit', ['id' => $id]);
+        $jawatan = DB::table('jawatan')->where('id', '=', $id)->first();
+
+        return  view('jawatan.template-edit', compact('jawatan'));
     }
 
     /**
@@ -56,7 +63,9 @@ class JawatanController extends Controller
     {
         $data = $request->validated();
 
-        dd($data);
+        DB::table('jawatan')->whereId($id)->update($data);
+
+        return redirect()->back()->with('alert-berjaya', 'Rekod berjaya dikemaskini');
     }
 
     /**
@@ -64,6 +73,8 @@ class JawatanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('jawatan')->whereId($id)->delete();
+
+        return redirect()->route('jawatan.index')->with('alert-berjaya', 'Rekod berjaya dihapuskan');
     }
 }

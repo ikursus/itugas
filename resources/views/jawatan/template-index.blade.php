@@ -20,6 +20,9 @@
                 Senarai Jawatan
             </div>
             <div class="card-body">
+
+                @include('template-alerts')
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -29,18 +32,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach( $senaraiJawatan as $jawatan)
                         <tr>
-                            <td>1</td>
-                            <td>Pegawai Teknologi Maklumat</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $jawatan->name }}</td>
                             <td>
-                                <a href="" class="btn btn-warning">Kemaskini</a>
-                                <form action="" method="post" class="d-inline">
+                                <a href="{{ route('jawatan.edit', $jawatan->id) }}" class="btn btn-info">Kemaskini</a>
+                                <form action="{{ route('jawatan.destroy', $jawatan->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Adakah anda pasti untuk padamkan data ini?')">Padam</button>
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

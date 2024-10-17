@@ -131,19 +131,19 @@ class TugasController extends Controller
         return  view('tugas.template-edit', ['id' => $id]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Tugas $tugas)
-    {
-        //
-    }
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(Request $request, Tugas $tugas)
+    // {
+    //     //
+    // }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Tugas $tugas)
-    {
-        //
-    }
+    // /**
+    //  * Remove the specified resource from storage.
+    //  */
+    // public function destroy(Tugas $tugas)
+    // {
+    //     //
+    // }
 }

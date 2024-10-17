@@ -23,6 +23,7 @@ class JawatanRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'is_enabled' => 'sometimes,boolean'
         ];
     }
 }
