@@ -30,7 +30,8 @@ class UserUpdateRequest extends FormRequest
             'no_phone' => 'required',
             'unit_id' => 'nullable|sometimes|integer',
             'bahagian_id' => 'nullable|sometimes|integer',
-            'level' => 'required|integer'
+            'level' => 'required|integer',
+            'role' => 'required'
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Jawatan;
 use App\Models\Bahagian;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 
@@ -35,8 +36,9 @@ class UserController extends Controller
         $senaraiJawatan = Jawatan::select('id', 'name')->get();
         $senaraiBahagian = Bahagian::select('id', 'name')->get();
         $senaraiUnit = Unit::select('id', 'name')->get();
+        $senaraiRole = Role::select('name')->get();
 
-        return view('users.template-create', compact('senaraiJawatan', 'senaraiBahagian', 'senaraiUnit'));
+        return view('users.template-create', compact('senaraiJawatan', 'senaraiBahagian', 'senaraiUnit', 'senaraiRole'));
     }
 
     /**
@@ -48,7 +50,10 @@ class UserController extends Controller
         // Memandangkan pada borang nombor ic menggunakan field bernama nric, maka assignkan nric kepada column database no_ic
         $data['no_ic'] = $request->input('nric');
 
-        User::create($data);
+        $user = User::create($data);
+
+        // Assignkan role kepada user
+        $user->assignRole( $request->input('role') );
 
         return redirect()->route('users.index')->with('alert-berjaya', 'Rekod berjaya disimpan');
     }
@@ -71,8 +76,9 @@ class UserController extends Controller
         $senaraiJawatan = Jawatan::select('id', 'name')->get();
         $senaraiBahagian = Bahagian::select('id', 'name')->get();
         $senaraiUnit = Unit::select('id', 'name')->get();
+        $senaraiRole = Role::select('name')->get();
 
-        return view('users.template-edit', compact('user', 'senaraiJawatan', 'senaraiBahagian', 'senaraiUnit'));
+        return view('users.template-edit', compact('user', 'senaraiJawatan', 'senaraiBahagian', 'senaraiUnit', 'senaraiRole'));
     }
 
     /**
@@ -97,6 +103,9 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $user->update($data);
+
+        // Kemaskini rekod role
+        $user->syncRoles( $request->input('role') );
 
         return redirect()->route('users.index')->with('alert-berjaya', 'Rekod berjaya dikemaskini');
     }

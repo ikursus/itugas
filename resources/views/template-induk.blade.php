@@ -62,6 +62,7 @@
                                 </nav>
                             </div>
 
+                            @role('Admin')
                             <div class="sb-sidenav-menu-heading">MENU PENGURUSAN</div>
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
@@ -123,7 +124,7 @@
                                     <a class="nav-link" href="{{ route('perkara.create') }}">Daftar Perkara Baru</a>
                                 </nav>
                             </div>
-
+                            @endrole
 
                             <div class="sb-sidenav-menu-heading">Akaun</div>
                             <a class="nav-link" href="{{ route('profil.index') }}">

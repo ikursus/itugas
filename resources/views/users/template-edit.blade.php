@@ -232,6 +232,31 @@
 
                     </div>
 
+                    <div class="row">
+
+                        <div class="col-md">
+
+                            <div class="mb-3">
+                                <label class="form-label">Role</label>
+                                <select class="form-select @error('role') is-invalid @elseif( old('role') ) is-valid @enderror" name="role">
+                                    <option value="">--Sila Pilih--</option>
+
+                                    @foreach ($senaraiRole as $role)
+                                <option value="{{ $role->name }}" {{ ( old('role') ?? $user->getRoleNames()->first() ) == $role->name ? 'selected' : NULL }}>{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('role')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
                 <!--//.card-body-->
 
