@@ -32,6 +32,7 @@
                             <th>Bahagian</th>
                             <th>Unit</th>
                             <th>Aras</th>
+                            <th>Role</th>
                             <th>Tindakan</th>
                         </tr>
                     </thead>
@@ -44,6 +45,7 @@
                             <td>{{ $user->bahagian->name ?? "Belum set bahagian"  }}</td>
                             <td>{{ $user->unit->name ?? "Belum set unit"  }}</td>
                             <td>{{ $user->level }}</td>
+                            <td>{{ $user->getRoleNames()->first() }}</td>
                             <td>
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>
 

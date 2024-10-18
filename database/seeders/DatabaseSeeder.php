@@ -14,10 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            RoleSeeder::class, // Wujudkan role dulu untuk ditambah pada user
+            BahagianSeeder::class, // Wujudkan bahagian untuk ditambah pada user
+            UnitSeeder::class, // Wujudkan unit untuk ditambah pada user
+            JawatanSeeder::class, // Wujudkan jawatan untuk ditambah pada user
             UserSeeder::class,
-            BahagianSeeder::class,
-            UnitSeeder::class,
-            JawatanSeeder::class,
             PerkaraSeeder::class
         ]);
     }
