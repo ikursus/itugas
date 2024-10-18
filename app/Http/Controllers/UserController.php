@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Jawatan;
 use App\Models\Bahagian;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
@@ -119,5 +120,27 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('alert-berjaya', 'Rekod berjaya dihapuskan');
+    }
+
+
+    public function pdf(Request $request)
+    {
+        $senaraiUsers = User::with([
+            'jawatan',
+            'bahagian',
+            'unit'
+        ])
+        ->get();
+
+        $pdf = Pdf::loadView('users.template-pdf', compact('senaraiUsers'));
+
+        // Semak jika file pdf ingin di download, maka force download ke dalam peranti pengguna
+        if ($request->has('jenis') && $request->input('jenis') == 'download')
+        {
+            return $pdf->download( 'users.pdf' );
+        }
+
+        // Jika tidak, paparkan pdf secara terus di browser
+        return $pdf->stream( 'users.pdf' );
     }
 }

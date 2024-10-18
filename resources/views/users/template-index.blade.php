@@ -25,6 +25,10 @@
 
                 <a href="{{ route('export.users') }}" class="btn btn-success mb-3">Export to Excel</a>
 
+                <a href="{{ route('users.pdf') }}?jenis=download" class="btn btn-primary mb-3">Download PDF</a>
+
+                <a href="{{ route('users.pdf') }}" class="btn btn-info mb-3">Buka PDF</a>
+
                 <table id="datatablesSimple">
                     <thead>
                         <tr>

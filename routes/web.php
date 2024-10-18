@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Route untuk pengurusan users
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/pdf', [UserController::class, 'pdf'])->name('users.pdf');
         Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
         Route::post('/users/create', [UserController::class, 'store'])->name('users.store');
         Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
