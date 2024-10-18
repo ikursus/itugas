@@ -39,7 +39,7 @@ class TugasController extends Controller
 
         $senaraiTugas = Tugas::with('user')
         ->where('user_id', '=', auth()->id() )
-        ->paginate(3);
+        ->paginate(5);
 
         return view('tugas.template-index', compact('senaraiTugas'));
     }

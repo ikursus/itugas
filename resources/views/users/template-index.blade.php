@@ -23,6 +23,8 @@
 
                 @include('template-alerts')
 
+                <a href="{{ route('export.users') }}" class="btn btn-success mb-3">Export to Excel</a>
+
                 <table id="datatablesSimple">
                     <thead>
                         <tr>

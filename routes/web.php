@@ -11,6 +11,7 @@ use App\Http\Controllers\PerkaraController;
 use App\Http\Controllers\BahagianController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Authenticate\LoginController;
+use App\Http\Controllers\ExportExcelController;
 
 // Route halaman utama aplikasi
 Route::get('/', [GuestController::class, 'homepage'])->name('halaman.utama');
@@ -30,13 +31,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Route untuk pengurusan profil
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');
-    Route::patch('/profil', [ProfilController::class, 'update'])->name('profile.update');
+    Route::patch('/profil', [ProfilController::class, 'update'])->name('profil.update');
 
     Route::resource('tugas', TugasController::class)->only('index', 'create', 'store', 'show');
 
 
     // Route yang memerlukan role admin untuk dibuka
     Route::middleware('role:Admin')->group(function () {
+
+        Route::get('/export/users', [ExportExcelController::class, 'exportUsers'])->name('export.users');
 
         // Route untuk pengurusan users
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
