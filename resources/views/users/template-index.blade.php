@@ -53,13 +53,22 @@
                             <td>{{ $user->level }}</td>
                             <td>{{ $user->getRoleNames()->first() }}</td>
                             <td>
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                                
+                                <div class="d-inline-flex gap-1">
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
 
-                                <form method="POST" action="{{ route('users.destroy', $user->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Adakah anda pasti untuk padamkan data ini: {{ $user->name }}?')">Delete</button>
-                                </form>
+                                    <form method="POST" action="{{ route('users.destroy', $user->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Adakah anda pasti untuk padamkan data ini: {{ $user->name }}?')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
