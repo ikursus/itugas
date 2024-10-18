@@ -32,37 +32,47 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');
     Route::patch('/profil', [ProfilController::class, 'update'])->name('profile.update');
 
-    // Route untuk pengurusan users
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/users/create', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-
-
-
-    // Paparkan senarai perkara
-    // Route::get('/perkara', [PerkaraController::class, 'index']);
-    // // Paparkan borang tambah perkara baru
-    // Route::get('/perkara/create', [PerkaraController::class, 'create']);
-    // // Dapatkan data daripada borang tambah perkara baru
-    // Route::post('/perkara/create', [PerkaraController::class, 'store']);
-    // // Paparkan borang edit perkara berdasarkan ID
-    // Route::get('/perkara/{id}/edit', [PerkaraController::class, 'edit']);
-    // // Dapatkan data daripada borang edit perkara
-    // Route::patch('/perkara/{id}', [PerkaraController::class, 'update']);
-    // // Hapus perkara berdasarkan ID
-    // Route::delete('/perkara/{id}', [PerkaraController::class, 'destroy']);
-
-    Route::resource('perkara', PerkaraController::class);
-    // Kecualikan method/function yang tak diperlukan.
-    Route::resource('jawatan', JawatanController::class)->except('show');
-    // Pilih method/function yang nak digunakan sahaja.
-    Route::resource('bahagian', BahagianController::class)->only('index', 'create', 'store', 'edit', 'update', 'destroy');
-    Route::resource('unit', UnitController::class)->except('show');
     Route::resource('tugas', TugasController::class)->only('index', 'create', 'store', 'show');
+
+
+    // Route yang memerlukan role admin untuk dibuka
+    Route::middleware('role:Admin')->group(function () {
+
+        // Route untuk pengurusan users
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users/create', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+        Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
+
+        // Paparkan senarai perkara
+        // Route::get('/perkara', [PerkaraController::class, 'index']);
+        // // Paparkan borang tambah perkara baru
+        // Route::get('/perkara/create', [PerkaraController::class, 'create']);
+        // // Dapatkan data daripada borang tambah perkara baru
+        // Route::post('/perkara/create', [PerkaraController::class, 'store']);
+        // // Paparkan borang edit perkara berdasarkan ID
+        // Route::get('/perkara/{id}/edit', [PerkaraController::class, 'edit']);
+        // // Dapatkan data daripada borang edit perkara
+        // Route::patch('/perkara/{id}', [PerkaraController::class, 'update']);
+        // // Hapus perkara berdasarkan ID
+        // Route::delete('/perkara/{id}', [PerkaraController::class, 'destroy']);
+
+        Route::resource('perkara', PerkaraController::class);
+        // Kecualikan method/function yang tak diperlukan.
+        Route::resource('jawatan', JawatanController::class)->except('show');
+        // Pilih method/function yang nak digunakan sahaja.
+        Route::resource('bahagian', BahagianController::class)->only('index', 'create', 'store', 'edit', 'update', 'destroy');
+        Route::resource('unit', UnitController::class)->except('show');
+
+    });
+
+
+
 
 });
 
